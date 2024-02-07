@@ -46,6 +46,7 @@ class HeadProgramController extends Controller
         Teacher::find($id)->update([
             'login' => 1,
         ]);
+        session()->flash('alert', ['success', 'Berhasil menambahkan data Ketua Jurusan']);
 
         return redirect(to: "/head-program");
     }
@@ -59,7 +60,7 @@ class HeadProgramController extends Controller
         Teacher::find($id)->update([
             'login' => 0,
         ]);
-
+        session()->flash('alert', ['success', 'Berhasil menghapus data Ketua Jurusan']);
         return redirect(to: "/head-program");
     }
 }

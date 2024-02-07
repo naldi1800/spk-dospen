@@ -26,6 +26,7 @@ class SkillController extends Controller
     public function save(Request $r)
     {
         Skill::create($r->except($this->exept));
+        session()->flash('alert', ['success', 'Berhasil menambahkan data Keahlian']);
         return redirect(to: "/skill");
     }
 
@@ -33,6 +34,7 @@ class SkillController extends Controller
     {
         $page = $this->page;
         $data = Skill::find($id);
+
         return view("admin.skill.update", compact(['page', 'data']));
     }
 
@@ -40,6 +42,7 @@ class SkillController extends Controller
     {
         $data = Skill::find($id);
         $data->update($r->except($this->exept));
+        session()->flash('alert', ['success', 'Berhasil mengupdate data Keahlian']);
         return redirect(to: "/skill");
     }
 
@@ -47,6 +50,7 @@ class SkillController extends Controller
     {
         $data = Skill::find($id);
         $data->delete();
+        session()->flash('alert', ['success', 'Berhasil menghapus data Keahlian']);
         return redirect(to: "/skill");
     }
 }

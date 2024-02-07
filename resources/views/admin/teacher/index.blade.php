@@ -22,7 +22,7 @@
                 @php
                     $ti = json_decode($d->title, true);
                     $name = '';
-                    if (array_key_exists('S3', $ti)) {
+                    if ($ti && array_key_exists('S3', $ti)) {
                         if (is_array($ti['S3'])) {
                             $temp = '';
                             foreach ($ti['S3'] as $value) {
@@ -34,7 +34,7 @@
                         }
                     }
                     $name .= ' ' . $d->name;
-                    if (array_key_exists('S1', $ti)) {
+                    if ($ti && array_key_exists('S1', $ti)) {
                         if (is_array($ti['S1'])) {
                             $temp = '';
                             foreach ($ti['S1'] as $value) {
@@ -47,7 +47,7 @@
                         }
                     }
 
-                    if (array_key_exists('S2', $ti)) {
+                    if ($ti && array_key_exists('S2', $ti)) {
                         if (is_array($ti['S2'])) {
                             $temp = '';
                             foreach ($ti['S1'] as $value) {
@@ -73,11 +73,13 @@
                     <td>{{ $d->position->position_name }}</td>
                     <td>
                         <ul class="list-group">
-                            @foreach (json_decode($d->skills) as $s)
-                                <li class="list-group-item">
-                                    {{ Skill::find($s)->skill_name }}
-                                </li>
-                            @endforeach
+                            @if ($d->skills)
+                                @foreach (json_decode($d->skills) as $s)
+                                    <li class="list-group-item">
+                                        {{ Skill::find($s)->skill_name }}
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </td>
                     <td class="d-flex justify-content-center">

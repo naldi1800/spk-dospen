@@ -51,6 +51,7 @@ class TitleController extends Controller
         // unset($data)
         // dd($data);
         Title::create($data);
+        session()->flash('alert', ['success', 'Berhasil menambahkan data judul skripsi']);
         return redirect(to: "/title");
     }
 
@@ -74,6 +75,7 @@ class TitleController extends Controller
             ]
         );
         $data->timestamps = true;
+        session()->flash('alert', ['success', 'Berhasil mengubah data tanggal proposal']);
         return redirect(to: "/title");
     }
     public function update_skripsi($id)
@@ -86,6 +88,7 @@ class TitleController extends Controller
             ]
         );
         $data->timestamps = true;
+        session()->flash('alert', ['success', 'Berhasil mengubah data tanggal skripsi']);
         return redirect(to: "/title");
     }
 
@@ -109,6 +112,7 @@ class TitleController extends Controller
 
         $data = array_diff_key($data, array_flip($this->exept));
         Title::find($id)->update($data);
+        session()->flash('alert', ['success', 'Berhasil mengubah data judul skripsi']);
         return redirect(to: "/title");
     }
 
@@ -116,6 +120,7 @@ class TitleController extends Controller
     {
         $data = Title::find($id);
         $data->delete();
+        session()->flash('alert', ['success', 'Berhasil menghapus data judul skripsi']);
         return redirect(to: "/title");
     }
 }

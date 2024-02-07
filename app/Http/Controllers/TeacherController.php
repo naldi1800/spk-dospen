@@ -80,6 +80,7 @@ class TeacherController extends Controller
         // dd($data);
 
         Teacher::create($data);
+        session()->flash('alert', ['success', 'Berhasil menambahkan Dosen']);
         return redirect(to: "/teacher");
     }
 
@@ -96,6 +97,7 @@ class TeacherController extends Controller
     {
         $teacher = Teacher::find($id);
         $teacher->update($r->except($this->exept));
+        session()->flash('alert', ['success', 'Berhasil mengubah data Dosen']);
         return redirect(to: "/teacher");
     }
 
@@ -103,6 +105,7 @@ class TeacherController extends Controller
     {
         $teacher = Teacher::find($id);
         $teacher->delete();
+        session()->flash('alert', ['success', 'Berhasil menghapus data Dosen']);
         return redirect(to: "/teacher");
     }
 

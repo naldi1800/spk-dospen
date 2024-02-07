@@ -31,6 +31,10 @@
                     <a class="nav-link {{ $page == 'title' ? 'active' : '' }}"
                         {{ $page == 'title' ? 'aria-current="page"' : '' }} href="/title">Judul Skripsi</a>
                 </li>
+                {{-- <li class="nav-item">
+                    <a class="nav-link {{ $page == 'prediction' ? 'active' : '' }}"
+                        {{ $page == 'prediction' ? 'aria-current="page"' : '' }} href="/prediction">NAIVE BAYES</a>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}"
                         onclick="event.preventDefault();

@@ -6,8 +6,8 @@
         @method('PUT')
         @csrf
         <div class="col-md-12">
-            <label for="departement_name" class="form-label">Nama Jurusan<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="departement_name" name="departement_name" value="{{ $data->skill_name }}"
+            <label for="department_name" class="form-label">Nama Jurusan<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="department_name" name="department_name" value="{{ $data->department_name }}"
                 required>
             <div class="invalid-feedback">
                 Masukan nama Jurusan!!!

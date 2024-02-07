@@ -7,7 +7,7 @@
         @csrf
         <div class="col-md-12">
             <label for="NIDN" class="form-label">NIDN<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="NIDN" name="NIDN" required>
+            <input type="text" class="form-control" id="NIDN" name="NIDN" value="{{$data['NIDN']}}" required>
             <div class="invalid-feedback">
                 Masukan NIDN!!!
             </div>
@@ -15,7 +15,7 @@
 
         <div class="col-md-12">
             <label for="name" class="form-label">Nama Dosen<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="name" name="name" required>
+            <input type="text" class="form-control" id="name" name="name" value="{{$data['name']}}" required>
             <div class="invalid-feedback">
                 Masukan nama dosen!!!
             </div>
@@ -23,7 +23,7 @@
 
         <div class="col-md-12">
             <label for="email" class="form-label">Email<span class="text-danger">*</span></label>
-            <input type="email" class="form-control" id="email" name="email">
+            <input type="email" class="form-control" id="email" name="email" value="{{$data['email']}}">
             <div class="invalid-feedback">
                 Masukan Email!!!
             </div>
@@ -31,7 +31,7 @@
 
         <div class="col-md-12">
             <label for="telp" class="form-label">Telp<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="telp" name="telp" required>
+            <input type="text" class="form-control" id="telp" name="telp" value="{{$data['telp']}}" required>
             <div class="invalid-feedback">
                 Masukan telp!!! "if null please insert '-' "
             </div>
@@ -40,9 +40,9 @@
         <div class="col-md-12">
             <label for="position_id" class="form-label">Jabatan<span class="text-danger">*</span></label>
             <select name="position_id" id="position_id" class="form-select" required>
-                <option value="">Pilih</option>
+                <option value="" disabled>Pilih</option>
                 @foreach ($dataPosition as $d)
-                    <option value="{{ $d->id }}">{{ $d->position_name }}</option>
+                    <option value="{{ $d->id }}" {{($data['position_id'] == $d->id)?'selected': ''}}>{{ $d->position_name }}</option>
                 @endforeach
             </select>
             <div class="invalid-feedback">

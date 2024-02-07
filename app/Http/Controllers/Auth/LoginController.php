@@ -47,13 +47,16 @@ class LoginController extends Controller
 
         if(auth()->attempt(['email'=>$input['email'], 'password'=>$input['password']])){
             if(auth()->user()->role == 'admin'){
+                session()->flash('alert', ['success', 'Berhasil Login Sebagai Admin']);
                 return redirect()->route('home');
             }
             else if(auth()->user()->role == 'ketjur'){
+                session()->flash('alert', ['success', 'Berhasil Login Sebagai Ketua Jurusan']);
                 return redirect()->route('ketjur.home');
             }
         }
         else{
+            session()->flash('alert', ['danger', 'Gagal Login']);
             return redirect()
             ->route('login')
             ->with('error', 'Incorrect email or password');

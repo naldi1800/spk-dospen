@@ -26,6 +26,7 @@ class PositionController extends Controller
     public function save(Request $r)
     {
         Position::create($r->except($this->exept));
+        session()->flash('alert', ['success', 'Berhasil menambahkan data Jabatan']);
         return redirect(to: "/position");
     }
 
@@ -42,6 +43,7 @@ class PositionController extends Controller
         $position = Position::find($id);
         // dd($position);
         $position->update($r->except($this->exept));
+        session()->flash('alert', ['success', 'Berhasil mengubah data Jabatan']);
         return redirect(to: "/position");
     }
 
@@ -49,6 +51,7 @@ class PositionController extends Controller
     {
         $position = Position::find($id);
         $position->delete();
+        session()->flash('alert', ['success', 'Berhasil menghapus data Jabatan']);
         return redirect(to: "/position");
     }
 }

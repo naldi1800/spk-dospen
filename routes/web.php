@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\PredictionController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TitleController;
@@ -56,6 +57,10 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
     Route::post('/position/save', [PositionController::class, 'save']);
     Route::put('/position/{id}', [PositionController::class, 'edit']);
     Route::delete('/position/{id}', [PositionController::class, 'delete']);
+
+    //PREDICTION
+    Route::get('/prediction', [PredictionController::class, 'index'])->name('data prediction');
+
 
     //DEPARTEMENT
     Route::get('/departement', [DepartementController::class, 'index'])->name('data departement');

@@ -25,6 +25,7 @@ class DepartementController extends Controller
     public function save(Request $r)
     {
         Department::create($r->except($this->exept));
+        session()->flash('alert', ['success', 'Berhasil menambahkan data Jurusan']);
         return redirect(to: "/departement");
     }
 
@@ -39,12 +40,15 @@ class DepartementController extends Controller
     {
         $data = Department::find($id);
         $data->update($r->except($this->exept));
+        session()->flash('alert', ['success', 'Berhasil mengubah data Jurusan']);
+
         return redirect(to: "/departement");
     }
 
     public function delete($id)
     {
         $data = Department::find($id);
+        session()->flash('alert', ['success', 'Berhasil menghapus data Jurusan']);
         $data->delete();
         return redirect(to: "/departement");
     }
