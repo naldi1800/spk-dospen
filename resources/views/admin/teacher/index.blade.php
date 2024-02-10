@@ -50,7 +50,7 @@
                     if ($ti && array_key_exists('S2', $ti)) {
                         if (is_array($ti['S2'])) {
                             $temp = '';
-                            foreach ($ti['S1'] as $value) {
+                            foreach ($ti['S2'] as $value) {
                                 $temp .= ', ' . $value . '.';
                             }
                             // $temp = rtrim($temp);

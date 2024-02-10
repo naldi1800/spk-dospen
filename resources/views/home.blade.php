@@ -5,6 +5,6 @@
             SELAMAT DATANG ADMINISTRATOR
         </div>
 
-    <a class="btn btn-success" href="/prediction    ">Prediction</a>
+    <a class="btn btn-success" href="/prediction">Prediction</a>
 
     @endsection

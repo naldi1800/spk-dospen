@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\History;
 use App\Models\Skill;
 use App\Models\Teacher;
 use App\Models\Title;
@@ -15,9 +16,17 @@ class TitleController extends Controller
     public function index()
     {
         $page = $this->page;
-        $data = Title::with('department', 'pem_i', 'pem_ii', 'pen_i', 'pen_ii')->get();
+        $data = History::with('department', 'pem_i', 'pem_ii', 'pen_i', 'pen_ii')->get();
         return view("admin.title.index", compact(['data', 'page']));
     }
+
+    public function data()
+    {
+        $page = $this->page;
+        $data = Title::with('department', 'pem_i', 'pem_ii', 'pen_i', 'pen_ii')->get();
+        return view("admin.title.data", compact(['data', 'page']));
+    }
+
 
     public function create()
     {

@@ -59,7 +59,10 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
     Route::delete('/position/{id}', [PositionController::class, 'delete']);
 
     //PREDICTION
-    Route::get('/prediction', [PredictionController::class, 'index'])->name('data prediction');
+    Route::get('/prediction', [PredictionController::class, 'index'])->name('input prediction');
+    Route::post('/prediction/bayes', [PredictionController::class, 'bayes'])->name('prediction');
+    Route::post('/prediction/save', [PredictionController::class, 'save'])->name('prediction save');
+    Route::post('/prediction/history', [PredictionController::class, 'history'])->name('prediction history');
 
 
     //DEPARTEMENT
@@ -71,7 +74,8 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
     Route::delete('/departement/{id}', [DepartementController::class, 'delete']);
 
     //TITLE
-    Route::get('/title', [TitleController::class, 'index'])->name('data title');
+    Route::get('/title', [TitleController::class, 'index'])->name('data history');
+    Route::get('/title/data', [TitleController::class, 'data'])->name('data title');
     Route::get('/title/create', [TitleController::class, 'create']);
     Route::get('/title/{id}/update', [TitleController::class, 'update']);
     Route::get('/title/{id}/proposal', [TitleController::class, 'update_proposal']);

@@ -1,7 +1,7 @@
 @extends('template.main')
 @section('container')
-    <h1>Data Judul Hasil Rekomendasi</h1>
-    <a class="btn btn-success" href="/{{ $page }}/data">Data Naive Bayes</a>
+    <h1>Data Latih</h1>
+    <a class="btn btn-success" href="/{{ $page }}">Kembali</a>
 @endsection
 @section('container2')
     <table class="table table-bordered text-center mt-3 table-responsive">
@@ -13,10 +13,7 @@
                 <th scope="col" colspan="2">Pembimbing</th>
                 <th scope="col" colspan="2">Penguji</th>
                 <th scope="col" rowspan="2">Jurusan</th>
-                <th scope="col" rowspan="2">Proposal</th>
-                <th scope="col" rowspan="2">Skripsi</th>
                 <th scope="col" rowspan="2">Skill</th>
-                <th scope="col" rowspan="2">Aksi</th>
             </tr>
             <tr>
                 <th scope="col" witdh="10%">1</th>
@@ -55,20 +52,6 @@
                     <td>{{ $d->pen_ii ? $d->pen_ii->name : 'Belum di atur' }}</td>
                     <td>{{ $d->department ? $d->department->singkatan : 'Belum di atur' }}</td>
                     <td>
-                        {{ is_null($d->tanggal_proposal) ? 'Belum Proposal' : $d->tanggal_proposal }}
-                        @if (is_null($d->tanggal_proposal))
-                            <a class='btn btn-success' href='/{{ $page }}/{{ $d->id }}/proposal'>tandai
-                                sudah proposal</a>
-                        @endif
-                    </td>
-                    <td>
-                        {{ is_null($d->tanggal_skripsi) ? 'Belum Skripsi' : $d->tanggal_skripsi }}
-                        @if (is_null($d->tanggal_skripsi))
-                            <a class='btn btn-success' href='/{{ $page }}/{{ $d->id }}/skripsi'>tandai
-                                sudah skripsi</a>
-                        @endif
-                    </td>
-                    <td>
                         <ul class="list-group">
                             @foreach (json_decode($d->skill) as $s)
                                 <li class="list-group-item">
@@ -76,16 +59,6 @@
                                 </li>
                             @endforeach
                         </ul>
-                    </td>
-                    <td class="d-flex justify-content-center">
-                        <a href="/{{ $page }}/{{ $d->id }}/update" class="btn btn-primary me-2"><i
-                                class="bi-pencil"></i>
-                        </a>
-                        <form action="/{{ $page }}/{{ $d->id }}" method="POST" class="">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="btn btn-danger"><i class="bi-trash"></i> </button>
-                        </form>
                     </td>
                 </tr>
             @endforeach

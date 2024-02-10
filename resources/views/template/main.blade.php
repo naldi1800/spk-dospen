@@ -65,6 +65,10 @@
     @yield('container')
 </div>
 
+<div class="container-fluid mt-3 mb-3">
+    @yield('container2')
+</div>
+
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function() {
