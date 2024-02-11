@@ -31,9 +31,32 @@
         padding: 0;
         background-color: #17a2b8;
         height: 100vh;
+
+        background-color: #f3f0ca;
+        color: #192655;
     }
 
+
+    .foreground {
+        background-color: #e1aa74;
+        color: #192655;
+    }
+
+    .action {
+        background-color: #3876bf;
+        color: #ffff;
+    }
+
+    .object {
+        /* background-color: #EEE0C9; */
+        color: #192655;
+    }
+
+    .table {
+        border: 1px solid black;
+    }
 </style>
+
 <body>
     {{-- @include('partial.navbar') --}}
     {{-- <div class="container mt-3 mb-3"> --}}
