@@ -1,11 +1,11 @@
 @extends('template.main')
 @section('container')
     <h1>Data Judul Hasil Rekomendasi</h1>
-    <a class="btn btn-success" href="/{{ $page }}/data">Data Naive Bayes</a>
+    <a class="btn foreground" href="/{{ $page }}/data">Data Naive Bayes</a>
 @endsection
 @section('container2')
     <table class="table table-bordered text-center mt-3 table-responsive">
-        <thead>
+        <thead class="action">
             <tr>
                 <th scope="col" rowspan="2">#</th>
                 <th scope="col" rowspan="2">Mahasiswa</th>

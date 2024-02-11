@@ -15,11 +15,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.2/math.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
+    <style>
+        .background {
+            background-color: #f3f0ca;
+            color: #192655;
+        }
 
+        .foreground {
+            background-color: #e1aa74;
+            color: #192655;
+        }
+
+        .action {
+            background-color: #3876bf;
+            color: #ffff;
+        }
+
+        .object {
+            /* background-color: #EEE0C9; */
+            color: #192655;
+        }
+        .table{
+            border: 1px solid black;
+        }
+    </style>
     <title>Document</title>
 </head>
 
-<body>
+<body class="background">
 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -38,36 +61,36 @@
 
     @include('partial.navbar')
     @if (session('alert'))
+        <div class="col-6 p-2 position-absolute end-0">
+            <div class="alert alert-{{ session('alert')[0] ?? 'warning' }} alert-dismissible d-flex align-items-center"
+                role="alert" id="autoCloseAlert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                    <use
+                        xlink:href="#{{ session('alert')[0] ? 'check-circle-fill' : 'exclamation-triangle-fill' }}" />
 
-    <div class="col-6 p-2 position-absolute end-0">
-        <div class="alert alert-{{session('alert')[0] ?? 'warning'}} alert-dismissible d-flex align-items-center"  role="alert"  id="autoCloseAlert">
-            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
-                <use xlink:href="#{{(session('alert')[0]) ? 'check-circle-fill' : 'exclamation-triangle-fill'}}" />
-
-            </svg>
-            <div>
-                {{session('alert')[1]?? 'Sepertinya ada kesalahan'}}
+                </svg>
+                <div>
+                    {{ session('alert')[1] ?? 'Sepertinya ada kesalahan' }}
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+
+        <script>
+            $(document).ready(function() {
+                setTimeout(function() {
+                    $("#autoCloseAlert").alert('close');
+                }, 2500);
+            });
+        </script>
+    @endif
+    <div class="container mt-3 mb-3">
+        @yield('container')
     </div>
 
-    <script>
-        $(document).ready(function(){
-            setTimeout(function(){
-                $("#autoCloseAlert").alert('close');
-            }, 2500);
-        });
-        </script>
-
-@endif
-<div class="container mt-3 mb-3">
-    @yield('container')
-</div>
-
-<div class="container-fluid mt-3 mb-3">
-    @yield('container2')
-</div>
+    <div class="container-fluid mt-3 mb-3">
+        @yield('container2')
+    </div>
 
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields

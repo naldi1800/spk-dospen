@@ -1,11 +1,11 @@
 @extends('template.main')
 @section('container')
     <h1>Data Latih</h1>
-    <a class="btn btn-success" href="/{{ $page }}">Kembali</a>
+    <a class="btn foreground" href="/{{ $page }}">Kembali</a>
 @endsection
 @section('container2')
     <table class="table table-bordered text-center mt-3 table-responsive">
-        <thead>
+        <thead class="action">
             <tr>
                 <th scope="col" rowspan="2">#</th>
                 <th scope="col" rowspan="2">Mahasiswa</th>

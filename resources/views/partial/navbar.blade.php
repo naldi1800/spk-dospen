@@ -1,4 +1,4 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark action">
     <div class="container-fluid">
         {{-- <a class="navbar-brand" href="/">{{ Auth::user()->name }} {{ Auth::user()->role }}</a> --}}
         <a class="navbar-brand" href="/">ADMIN</a>

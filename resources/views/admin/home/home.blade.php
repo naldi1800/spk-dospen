@@ -4,7 +4,7 @@
         <div class="fs-2 text-center col-12 mb-4">
             SELAMAT DATANG ADMINISTRATOR
         </div>
-        <a class="btn btn-success" href="/prediction    ">Rekomendasi Dosen Pembimbing Dan Dosen Penguji</a>
+        <a class="btn foreground" href="/prediction">Rekomendasi Dosen Pembimbing Dan Dosen Penguji</a>
 
 
     @endsection

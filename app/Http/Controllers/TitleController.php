@@ -67,7 +67,7 @@ class TitleController extends Controller
     public function update($id)
     {
         $page = $this->page;
-        $data = Title::find($id);
+        $data = History::find($id);
         $teacher = Teacher::all();
         $dataSkill = Skill::all();
         $department = Department::all();
@@ -76,7 +76,7 @@ class TitleController extends Controller
 
     public function update_proposal($id)
     {
-        $data = Title::find($id);
+        $data = History::find($id);
         $data->timestamps = false;
         $data->update(
             [
@@ -89,7 +89,7 @@ class TitleController extends Controller
     }
     public function update_skripsi($id)
     {
-        $data = Title::find($id);
+        $data = History::find($id);
         $data->timestamps = false;
         $data->update(
             [
@@ -120,14 +120,14 @@ class TitleController extends Controller
         $data['skill'] = json_encode($skill);
 
         $data = array_diff_key($data, array_flip($this->exept));
-        Title::find($id)->update($data);
+        History::find($id)->update($data);
         session()->flash('alert', ['success', 'Berhasil mengubah data judul skripsi']);
         return redirect(to: "/title");
     }
 
     public function delete($id)
     {
-        $data = Title::find($id);
+        $data = History::find($id);
         $data->delete();
         session()->flash('alert', ['success', 'Berhasil menghapus data judul skripsi']);
         return redirect(to: "/title");

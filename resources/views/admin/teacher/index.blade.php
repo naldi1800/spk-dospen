@@ -1,10 +1,10 @@
 @extends('template.main')
 @section('container')
     <h1>Data Dosen</h1>
-    <a class="btn btn-success" href="/{{ $page }}/create">Tambah Dosen</a>
+    <a class="btn foreground" href="/{{ $page }}/create">Tambah Dosen</a>
 
     <table class="table table-bordered text-center mt-3">
-        <thead>
+        <thead class="action">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">NIDN</th>
