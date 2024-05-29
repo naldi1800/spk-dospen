@@ -1,7 +1,19 @@
-@extends('template.main')
-@section('container')
-    <h1>PREDIKSI MENGGUNAKAN NAIVE BAYES</h1>
-    <!-- @php
+<?php
+
+namespace App\Helpers;
+
+use App\Models\Title;
+use App\Models\Skill;
+use App\Models\Teacher;
+
+class NaiveBayes
+{
+    static function NAIVE($dataskill_input)
+    {
+        $data = Title::all();
+        $dataskill = Skill::all();
+        $datadosen = Teacher::all();
+
         $skill_all = [];
 
         // [Pembimbing 1, Pembimbing 2, Penguji 1, Penguji 2]
@@ -205,134 +217,6 @@
         arsort($posterior['p2']);
         arsort($posterior['q1']);
         arsort($posterior['q2']);
-
-        // dd($posterior);
-
-    @endphp -->
-
-    <form action="/{{ $page }}/save" method="POST">
-        @csrf
-        <input type="hidden" id="id" name="id" value="{{ $saved->id }}">
-        <div class="row">
-            <div class="col-6 p-2">
-                <div class="card ">
-                    <div class="card-body">
-                        <h5 class="card-title">Pembimbing 1</h5>
-                        <div class="btn-group-vertical col-12" role="group" aria-label="Basic radio toggle button group">
-                            @foreach ($posterior['p1'] as $v => $k)
-                                @foreach ($datadosen as $d)
-                                    @if ($d->id == $v)
-                                        <input type="radio" value="{{$d->id}}" class="btn-check" name="pem1" id="pem1{{ $v }}"
-                                            autocomplete="off" required>
-                                        <label class="btn btn-outline-secondary" for="pem1{{ $v }}">
-                                            {{ $d->name }}
-                                        </label>
-                                        @php
-                                            break;
-                                        @endphp
-                                    @endif
-                                @endforeach
-
-                                @if ($loop->index == 4)
-                                    @php
-                                        break;
-                                    @endphp
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 p-2">
-                <div class="card">
-                    <div class="card-body ">
-                        <h5 class="card-title">Pembimbing 2</h5>
-                        <div class="btn-group-vertical col-12" role="group" aria-label="Basic radio toggle button group">
-                            @foreach ($posterior['p2'] as $v => $k)
-                                @foreach ($datadosen as $d)
-                                    @if ($d->id == $v)
-                                        <input type="radio" value="{{$d->id}}" class="btn-check" name="pem2" id="pem2{{ $v }}"
-                                            autocomplete="off" required>
-                                        <label class="btn btn-outline-secondary" for="pem2{{ $v }}">
-                                            {{ $d->name }}
-                                        </label>
-                                        @php
-                                            break;
-                                        @endphp
-                                    @endif
-                                @endforeach
-
-                                @if ($loop->index == 4)
-                                    @php
-                                        break;
-                                    @endphp
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="col-6 p-2">
-                <div class="card ">
-                    <div class="card-body">
-                        <h5 class="card-title">Penguji 1</h5>
-                        <div class="btn-group-vertical col-12" role="group" aria-label="Basic radio toggle button group">
-                            @foreach ($posterior['q1'] as $v => $k)
-                                @foreach ($datadosen as $d)
-                                    @if ($d->id == $v)
-                                        <input type="radio" value="{{$d->id}}" class="btn-check" name="pen1" id="pen1{{ $v }}"
-                                            autocomplete="off" required>
-                                        <label class="btn btn-outline-secondary" for="pen1{{ $v }}">
-                                            {{ $d->name }}
-                                        </label>
-                                        @php
-                                            break;
-                                        @endphp
-                                    @endif
-                                @endforeach
-
-                                @if ($loop->index == 4)
-                                    @php
-                                        break;
-                                    @endphp
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 p-2">
-                <div class="card ">
-                    <div class="card-body">
-                        <h5 class="card-title">Penguji 2</h5>
-                        <div class="btn-group-vertical col-12 row" role="group"
-                            aria-label="Basic radio toggle button group">
-                            @foreach ($posterior['q2'] as $v => $k)
-                                @foreach ($datadosen as $d)
-                                    @if ($d->id == $v)
-                                        <input type="radio" value="{{$d->id}}" class="btn-check " name="pen2"
-                                            id="pen2{{ $v }}" autocomplete="off" required>
-                                        <label class="btn btn-outline-secondary col-12" for="pen2{{ $v }}">
-                                            {{ $d->name }}
-                                        </label>
-                                        @php
-                                            break;
-                                        @endphp
-                                    @endif
-                                @endforeach
-
-                                @if ($loop->index == 4)
-                                    @php
-                                        break;
-                                    @endphp
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-        </div>
-
-        <button type="submit" class="btn btn-primary">Save</button>
-    </form>
-@endsection
+        return $posterior;
+    }
+}

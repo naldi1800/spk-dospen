@@ -78,6 +78,8 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
     Route::get('/title/data', [TitleController::class, 'data'])->name('data title');
     Route::get('/title/create', [TitleController::class, 'create']);
     Route::get('/title/{id}/update', [TitleController::class, 'update']);
+    Route::get('/title/{id}/setPengujiOtomatis', [TitleController::class, 'set_penguji_otomatis']);
+    Route::post('/title/{id}/setPengujiManual', [TitleController::class, 'set_penguji_manual']);
     Route::get('/title/{id}/proposal', [TitleController::class, 'update_proposal']);
     Route::get('/title/{id}/skripsi', [TitleController::class, 'update_skripsi']);
     Route::post('/title/save', [TitleController::class, 'save']);

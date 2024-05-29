@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique()->default(null);
             $table->string('telp')->unique()->default(null);
-            $table->json('skills');
-            $table->json('title');
+            $table->json('skills')->default(null);;
+            $table->json('title')->default(null);;
             $table->boolean('pembimbing')->default(false);
             $table->boolean('penguji')->default(false);
             $table->boolean('login')->default(false);

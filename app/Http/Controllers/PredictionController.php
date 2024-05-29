@@ -8,6 +8,7 @@ use App\Models\History_Temp;
 use App\Models\Skill;
 use App\Models\Teacher;
 use App\Models\Title;
+use App\Helpers\NaiveBayes;
 use Illuminate\Http\Request;
 
 class PredictionController extends Controller
@@ -26,7 +27,6 @@ class PredictionController extends Controller
 
     public function bayes(Request $request)
     {
-
         $data = $request->all();
         $data['mahasiswa_i'] = $data['name1'] . "|" . $data['nim1'];
         $data['mahasiswa_ii'] = (is_null($data['name2'])) ? null : $data['name1'] . "|" . $data['nim1'];
@@ -51,7 +51,8 @@ class PredictionController extends Controller
         $dataskill = Skill::all();
         $datadosen = Teacher::all();
         $department = Department::all();
-        return view("admin.prediction.bayes", compact(['page', 'data', 'dataskill', 'datadosen', 'department', 'request', 'dataskill_input', 'saved']));
+        $posterior = NaiveBayes::NAIVE($dataskill_input);
+        return view("admin.prediction.bayes", compact(['page', 'data', 'dataskill', 'datadosen', 'department', 'request', 'posterior', 'saved']));
     }
     public function save(Request $request)
     {
@@ -61,8 +62,8 @@ class PredictionController extends Controller
         // dd($data, $history_temp);
         $history_temp['pembimbing_i'] = $data['pem1'];
         $history_temp['pembimbing_ii'] = $data['pem2'];
-        $history_temp['penguji_i'] = $data['pen1'];
-        $history_temp['penguji_ii'] = $data['pen2'];
+        // $history_temp['penguji_i'] = $data['pen1'];
+        // $history_temp['penguji_ii'] = $data['pen2'];
         History::create($history_temp);
         $history->delete();
         session()->flash('alert', ['success', 'Berhasil menambahkan data judul skripsi hasil algoritma']);

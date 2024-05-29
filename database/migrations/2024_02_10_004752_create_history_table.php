@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('mahasiswa_i');
             $table->string('mahasiswa_ii')->nullable();
             $table->string('title');
-            $table->unsignedBigInteger('pembimbing_i');
-            $table->unsignedBigInteger('pembimbing_ii');
-            $table->unsignedBigInteger('penguji_i');
-            $table->unsignedBigInteger('penguji_ii');
+            $table->unsignedBigInteger('pembimbing_i')->nullable();
+            $table->unsignedBigInteger('pembimbing_ii')->nullable();
+            $table->unsignedBigInteger('penguji_i')->nullable();
+            $table->unsignedBigInteger('penguji_ii')->nullable();
             $table->json('skill');
             $table->unsignedBigInteger('jurusan_id');
             $table->date('tanggal_proposal')->nullable();
