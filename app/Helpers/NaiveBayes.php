@@ -217,6 +217,49 @@ class NaiveBayes
         arsort($posterior['p2']);
         arsort($posterior['q1']);
         arsort($posterior['q2']);
+
+        $pos['p1'] = $posterior['p1'];
+        foreach($pos['p1'] as $k => $v){
+            $curent = Teacher::find($k);
+            $cek= $curent->pembimbing;
+            if(!$cek){
+                unset($pos['p1'][$k]);
+            }
+        }
+        
+
+        $pos['p2'] = $posterior['p2'];
+        foreach($pos['p2'] as $k => $v){
+            $curent = Teacher::find($k);
+            $cek= $curent->pembimbing;
+            if(!$cek){
+                unset($pos['p2'][$k]);
+            }
+        }
+        $pos['q1'] = $posterior['q1'];
+        foreach($pos['q1'] as $k => $v){
+            $curent = Teacher::find($k);
+            $cek= $curent->penguji;
+            if(!$cek){
+                unset($pos['q1'][$k]);
+            }
+        }
+        $pos['q2'] = $posterior['q2'];
+        foreach($pos['q2'] as $k => $v){
+            $curent = Teacher::find($k);
+            $cek= $curent->penguji;
+            if(!$cek){
+                unset($pos['q2'][$k]);
+            }
+        }
+
+        $posterior['p1'] = $pos['p1'];
+        $posterior['p2'] = $pos['p2'];
+        $posterior['q1'] = $pos['q1'];
+        $posterior['q2'] = $pos['q2'];
+        // dd($posterior);
+        // $cek = $curent->penguji;
+
         return $posterior;
     }
 }
